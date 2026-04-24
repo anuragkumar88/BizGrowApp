@@ -1,4 +1,4 @@
-import { Badge } from '@/app/components/ui';
+import { Badge } from '@/components/ui';
 import '@/global.css';
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
@@ -147,8 +147,8 @@ export default function CampaignsScreen() {
           </View>
 
           <View className="flex-row items-center gap-2">
-            <View className="rounded-full bg-[#DCFCE7] px-3 py-1">
-              <Text className="text-xs font-sans-bold font-bold text-[#16A34A]">
+            <View className="rounded-full bg-primary-light px-3 py-1">
+              <Text className="text-xs font-sans-bold font-bold text-primary">
                 {audienceCount} customers selected
               </Text>
             </View>
@@ -157,10 +157,10 @@ export default function CampaignsScreen() {
 
         {/* Send Section */}
         {canSend && (
-          <View className="rounded-2xl bg-[#F0FDF4] p-4 mb-5">
+          <View className="rounded-2xl bg-primary-light p-4 mb-5">
             <View className="flex-row items-center gap-2 mb-3">
               <Ionicons name="logo-whatsapp" size={22} color="#16A34A" />
-              <Text className="text-sm font-sans-semibold text-[#16A34A]">
+              <Text className="text-sm font-sans-semibold text-primary">
                 Ready to send to {audienceCount} customers
               </Text>
             </View>
@@ -178,7 +178,7 @@ export default function CampaignsScreen() {
         {/* Past Campaigns */}
         <View className="list-head">
           <Text className="list-title">Past Campaigns</Text>
-          <View className="rounded-full bg-[#232A45] px-3 py-1">
+          <View className="rounded-full bg-secondary px-3 py-1">
             <Text className="text-xs font-sans-bold text-white">{PAST_CAMPAIGNS.length}</Text>
           </View>
         </View>

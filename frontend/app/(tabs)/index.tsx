@@ -54,9 +54,17 @@ export default function HomeScreen() {
               <Text className="home-greeting font-extrabold ">Aryan's Store</Text>
             </View>
           </View>
-          <TouchableOpacity className="size-10 items-center justify-center rounded-full border border-border bg-card">
-            <Ionicons name="notifications-outline" size={20} color="#1A1A2E" />
-          </TouchableOpacity>
+          <View className="flex-row gap-2">
+            <TouchableOpacity className="size-10 items-center justify-center rounded-full border border-border bg-card">
+              <Ionicons name="notifications-outline" size={20} color="#0F172A" />
+            </TouchableOpacity>
+            <TouchableOpacity 
+              className="size-10 items-center justify-center rounded-full border border-border bg-card"
+              onPress={() => router.replace('/')}
+            >
+              <Ionicons name="log-out-outline" size={20} color="#0EA5E9" />
+            </TouchableOpacity>
+          </View>
         </View>
 
         {/* 2. Revenue Card */}

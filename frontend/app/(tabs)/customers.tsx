@@ -1,4 +1,4 @@
-import { Avatar, Badge, Button, Input } from '@/app/components/ui';
+import { Avatar, Badge, Button, Input } from '@/components/ui';
 import '@/global.css';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
@@ -100,8 +100,8 @@ export default function CustomersScreen() {
           Last visit: {item.lastVisit}
         </Text>
         <View className="flex-row items-center gap-2">
-          <View className="rounded-full bg-[#DCFCE7] px-3 py-1">
-            <Text className="text-xs font-sans-bold font-bold text-[#16A34A]">
+          <View className="rounded-full bg-primary-light px-3 py-1">
+            <Text className="text-xs font-sans-bold font-bold text-primary">
               {item.points} pts
             </Text>
           </View>

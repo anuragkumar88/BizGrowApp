@@ -10,6 +10,8 @@ const loyaltyRoutes = require('./routes/loyaltyRoutes');
 const campaignRoutes = require('./routes/campaignRoutes');
 const analyticsRoutes = require('./routes/analyticsRoutes');
 const settingsRoutes = require('./routes/settingsRoutes');
+const customerAuthRoutes = require('./routes/customerAuthRoutes');
+const customerPortalRoutes = require('./routes/customerPortalRoutes');
 
 // Import Error Handler
 const errorHandler = require('./middleware/errorHandler');
@@ -28,6 +30,8 @@ app.use('/loyalty', loyaltyRoutes);
 app.use('/campaigns', campaignRoutes);
 app.use('/analytics', analyticsRoutes);
 app.use('/settings', settingsRoutes);
+app.use('/auth/customer', customerAuthRoutes);
+app.use('/customer-portal', customerPortalRoutes);
 
 // Global Error Handler
 app.use(errorHandler);

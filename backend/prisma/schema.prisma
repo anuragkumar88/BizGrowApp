@@ -23,7 +23,8 @@ model Customer {
   id         String   @id @default(uuid())
   user_id    String
   name       String
-  phone      String
+  phone      String   @unique
+  password   String?
   tags       String   @default("[]")
   points     Int      @default(0)
   created_at DateTime @default(now())

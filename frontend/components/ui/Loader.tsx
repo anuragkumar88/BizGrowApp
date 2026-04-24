@@ -23,7 +23,7 @@ export default function Loader({
 
   if (fullScreen) {
     return (
-      <View className="flex-1 bg-[#F5F5F0] items-center justify-center">
+      <View className="flex-1 bg-background items-center justify-center">
         {content}
       </View>
     );

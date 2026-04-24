@@ -28,25 +28,25 @@ export default function Button({
 
   switch (variant) {
     case 'primary':
-      bgClass = 'bg-[#16A34A]';
+      bgClass = 'bg-primary';
       textClass = 'text-white';
       break;
     case 'secondary':
-      bgClass = 'bg-[#2563EB]';
+      bgClass = 'bg-secondary';
       textClass = 'text-white';
       break;
     case 'danger':
-      bgClass = 'bg-[#DC2626]';
+      bgClass = 'bg-destructive';
       textClass = 'text-white';
       break;
     case 'outline':
       bgClass = 'bg-transparent';
       borderClass = 'border border-[#16A34A]';
-      textClass = 'text-[#16A34A]';
+      textClass = 'text-primary';
       break;
     case 'ghost':
       bgClass = 'bg-transparent';
-      textClass = 'text-[#16A34A]';
+      textClass = 'text-primary';
       break;
   }
 

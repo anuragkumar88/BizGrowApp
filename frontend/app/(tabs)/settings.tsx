@@ -3,7 +3,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { Alert, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Avatar, Button, Input } from '@/app/components/ui';
+import { useRouter } from 'expo-router';
+import { Avatar, Button, Input } from '@/components/ui';
 
 type StoreData = {
   name: string;
@@ -29,15 +30,10 @@ export default function SettingsScreen() {
   const [redemptionDays, setRedemptionDays] = useState(String(MOCK_STORE.redemptionDays));
   const [isEditingRedemption, setIsEditingRedemption] = useState(false);
 
+  const router = useRouter();
+
   const handleLogout = () => {
-    Alert.alert(
-      'Logout',
-      'Are you sure you want to logout?',
-      [
-        { text: 'Cancel', style: 'cancel' },
-        { text: 'Logout', style: 'destructive', onPress: () => {} },
-      ]
-    );
+    router.push('/');
   };
 
   return (
@@ -77,7 +73,7 @@ export default function SettingsScreen() {
                   onChangeText={setStoreName}
                 />
                 <TouchableOpacity
-                  className="mt-3 items-center rounded-2xl bg-[#16A34A] py-3"
+                  className="mt-3 items-center rounded-2xl bg-primary py-3"
                   activeOpacity={0.85}
                   onPress={() => setIsEditingName(false)}
                 >
@@ -184,10 +180,10 @@ export default function SettingsScreen() {
         <Button
           label="Logout"
           onPress={handleLogout}
-          variant="danger"
+          variant="outline"
           size="lg"
           fullWidth
-          icon={<Ionicons name="log-out-outline" size={20} color="#fff" />}
+          icon={<Ionicons name="log-out-outline" size={20} color="#0EA5E9" />}
         />
       </ScrollView>
     </SafeAreaView>

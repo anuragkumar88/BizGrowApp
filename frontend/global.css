@@ -19,13 +19,13 @@
     --color-border: #E2E8F0;
     /* Subtle, clean border */
 
-    /* ── Brand (Premium Emerald & Indigo) ── */
-    --color-primary: #232A45;
-    /* Sophisticated Emerald */
-    --color-primary-light: #FCFCFC;
-    --color-secondary: #002147;
-    /* Modern Indigo */
-    --color-secondary-light: #EEF2FF;
+    /* ── Brand (Sky Blue & White) ── */
+    --color-primary: #0EA5E9;
+    /* Sky Blue */
+    --color-primary-light: #E0F2FE;
+    --color-secondary: #0284C7;
+    /* Deeper Sky Blue */
+    --color-secondary-light: #F0F9FF;
 
     /* ── Semantic ── */
     --color-success: #10B981;
@@ -237,11 +237,11 @@
     }
 
     .home-stats-card {
-        @apply flex-1 rounded-2xl bg-[#f3b058] border border-border p-4 items-center;
+        @apply flex-1 rounded-2xl bg-primary-light border border-border p-4 items-center;
     }
 
     .home-stats-value {
-        @apply text-2xl font-sans-extrabold text-[#39393f];
+        @apply text-2xl font-sans-extrabold text-primary;
     }
 
     .home-stats-label {
@@ -261,7 +261,7 @@
     }
 
     .home-quick-action {
-        @apply flex-1 items-center rounded-2xl border border-border bg-[#2C3552] py-4 gap-2;
+        @apply flex-1 items-center rounded-2xl border border-border bg-secondary py-4 gap-2;
     }
 
     .home-quick-action-text {
@@ -424,7 +424,7 @@
     TRANSACTION
     ───────────────────────────────────────── */
     .transaction-card {
-        @apply rounded-2xl border border-border bg-[#f3b058] p-4 mb-3 flex-row items-center justify-between;
+        @apply rounded-2xl border border-border bg-primary-light p-4 mb-3 flex-row items-center justify-between;
     }
 
     .transaction-amount {
@@ -436,11 +436,11 @@
     }
 
     .points-earned-badge {
-        @apply rounded-full bg-[#fdd197] px-3 py-1;
+        @apply rounded-full bg-[#BAE6FD] px-3 py-1;
     }
 
     .points-earned-text {
-        @apply text-xs font-bold font-sans-bold text-[#222222];
+        @apply text-xs font-bold font-sans-bold text-secondary;
     }
 
     /* ─────────────────────────────────────────

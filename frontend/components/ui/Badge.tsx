@@ -21,24 +21,24 @@ export default function Badge({
 
   switch (variant) {
     case 'primary':
-      bgClass = 'bg-[#DCFCE7]';
-      textClass = 'text-[#16A34A]';
+      bgClass = 'bg-primary-light';
+      textClass = 'text-primary';
       break;
     case 'secondary':
-      bgClass = 'bg-[#DBEAFE]';
-      textClass = 'text-[#2563EB]';
+      bgClass = 'bg-secondary-light';
+      textClass = 'text-secondary';
       break;
     case 'danger':
-      bgClass = 'bg-[#FEE2E2]';
-      textClass = 'text-[#DC2626]';
+      bgClass = 'bg-destructive-light';
+      textClass = 'text-destructive';
       break;
     case 'warning':
-      bgClass = 'bg-[#FEF3C7]';
-      textClass = 'text-[#D97706]';
+      bgClass = 'bg-warning-light';
+      textClass = 'text-warning';
       break;
     case 'muted':
-      bgClass = 'bg-[#E4E4E7]';
-      textClass = 'text-[#6B7280]';
+      bgClass = 'bg-muted';
+      textClass = 'text-muted-foreground';
       break;
   }
 

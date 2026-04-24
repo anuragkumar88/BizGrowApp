@@ -3,7 +3,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Avatar } from '@/app/components/ui';
+import { Avatar } from '@/components/ui';
 
 type DataPoint = { label: string; value: number };
 type RangeKey = 'today' | 'week' | 'month';
@@ -117,7 +117,7 @@ export default function AnalyticsScreen() {
               return (
                 <View key={item.label} className="items-center flex-1">
                   <View
-                    className="rounded-t-lg bg-[#16A34A]"
+                    className="rounded-t-lg bg-primary"
                     style={{ width: '65%', height: barHeight }}
                   />
                   <Text className="text-[10px] font-sans-medium text-muted-foreground mt-1.5">
@@ -132,11 +132,11 @@ export default function AnalyticsScreen() {
         {/* Stats Cards 2x2 */}
         <View className="flex-row gap-3 mb-3">
           <View className="flex-1 rounded-2xl border border-border bg-card p-4">
-            <Text className="text-xl font-extrabold font-sans-bold text-[#16A34A]">₹28,480</Text>
+            <Text className="text-xl font-extrabold font-sans-bold text-primary">₹28,480</Text>
             <Text className="text-xs font-sans-medium text-muted-foreground mt-1">Total Revenue</Text>
           </View>
           <View className="flex-1 rounded-2xl border border-border bg-card p-4">
-            <Text className="text-xl font-extrabold font-sans-bold text-[#2563EB]">186</Text>
+            <Text className="text-xl font-extrabold font-sans-bold text-secondary">186</Text>
             <Text className="text-xs font-sans-medium text-muted-foreground mt-1">Transactions</Text>
           </View>
         </View>
@@ -169,7 +169,7 @@ export default function AnalyticsScreen() {
                 <Text className="flex-1 text-sm font-sans-semibold text-foreground" numberOfLines={1}>
                   {customer.name}
                 </Text>
-                <Text className="text-sm font-sans-bold font-bold text-[#16A34A]">
+                <Text className="text-sm font-sans-bold font-bold text-primary">
                   ₹{customer.spend.toLocaleString()}
                 </Text>
               </View>

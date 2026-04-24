@@ -1,4 +1,4 @@
-import { Avatar, Badge, Button, Input } from '@/app/components/ui';
+import { Avatar, Badge, Button, Input } from '@/components/ui';
 import '@/global.css';
 import { Ionicons } from '@expo/vector-icons';
 import { Stack, useRouter } from 'expo-router';
@@ -113,14 +113,14 @@ export default function NewTransactionScreen() {
             </Text>
             
             {selectedCustomer ? (
-              <View className="flex-row items-center justify-between rounded-2xl border border-[#16A34A] bg-[#DCFCE7] p-4">
+              <View className="flex-row items-center justify-between rounded-2xl border border-primary bg-primary-light p-4">
                 <View className="flex-row items-center">
                   <Avatar name={selectedCustomer.name} size="md" backgroundColor="#16A34A" textColor="#fff" />
                   <View className="ml-3">
-                    <Text className="text-base font-sans-bold text-[#064E3B]">
+                    <Text className="text-base font-sans-bold text-primary">
                       {selectedCustomer.name}
                     </Text>
-                    <Text className="text-sm font-sans-medium text-[#065F46]">
+                    <Text className="text-sm font-sans-medium text-primary">
                       {selectedCustomer.phone}
                     </Text>
                   </View>

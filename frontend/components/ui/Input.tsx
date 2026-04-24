@@ -34,14 +34,14 @@ export default function Input({
   rightIcon,
   autoCapitalize,
 }: InputProps) {
-  const bgClass = editable ? 'bg-white' : 'bg-[#E4E4E7]';
+  const bgClass = editable ? 'bg-background' : 'bg-muted';
   const borderClass = error ? 'border-[#DC2626]' : 'border-[rgba(0,0,0,0.1)]';
   const textClass = editable ? 'text-foreground' : 'text-muted-foreground';
   const heightClass = multiline ? 'min-h-[100px]' : '';
 
   return (
     <View className="w-full">
-      {label && <Text className="text-sm font-sans-semibold text-[#1A1A2E] mb-1">{label}</Text>}
+      {label && <Text className="text-sm font-sans-semibold text-foreground mb-1">{label}</Text>}
       <View className={`flex-row items-center border rounded-2xl px-4 py-4 gap-2 ${bgClass} ${borderClass} ${heightClass}`}>
         {icon}
         <TextInput
@@ -61,7 +61,7 @@ export default function Input({
         {rightIcon}
       </View>
       {error ? (
-        <Text className="text-xs font-sans-medium text-[#DC2626] mt-1">{error}</Text>
+        <Text className="text-xs font-sans-medium text-destructive mt-1">{error}</Text>
       ) : hint ? (
         <Text className="text-xs font-sans-medium text-muted-foreground mt-1">{hint}</Text>
       ) : null}
