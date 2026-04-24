@@ -12,6 +12,7 @@ const analyticsRoutes = require('./routes/analyticsRoutes');
 const settingsRoutes = require('./routes/settingsRoutes');
 const customerAuthRoutes = require('./routes/customerAuthRoutes');
 const customerPortalRoutes = require('./routes/customerPortalRoutes');
+const contactRoutes = require('./routes/contactRoutes');
 
 // Import Error Handler
 const errorHandler = require('./middleware/errorHandler');
@@ -32,6 +33,7 @@ app.use('/analytics', analyticsRoutes);
 app.use('/settings', settingsRoutes);
 app.use('/auth/customer', customerAuthRoutes);
 app.use('/customer-portal', customerPortalRoutes);
+app.use('/contact', contactRoutes);
 
 // Global Error Handler
 app.use(errorHandler);

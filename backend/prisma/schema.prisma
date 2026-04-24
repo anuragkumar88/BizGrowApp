@@ -62,3 +62,10 @@ model Setting {
 
   user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
+
+model ContactMessage {
+  id         String   @id @default(uuid())
+  subject    String
+  message    String
+  created_at DateTime @default(now())
+}

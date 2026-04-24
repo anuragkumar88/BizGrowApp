@@ -1,6 +1,7 @@
 import '@/global.css';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import { useAuth } from '../../context/AuthContext';
 import { Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -36,6 +37,10 @@ const topCustomers: Customer[] = [
 
 export default function HomeScreen() {
   const router = useRouter();
+  const { user, logout } = useAuth();
+  
+  const displayStoreName = user?.storeName || "Aryan's Kirana Store";
+  const displayInitials = displayStoreName.substring(0, 2).toUpperCase();
 
   return (
     <SafeAreaView className="flex-1 bg-background" edges={['top']}>
@@ -47,11 +52,11 @@ export default function HomeScreen() {
         <View className="home-header px-4 mt-4">
           <View className="flex-row items-center">
             <View className="home-avatar mr-0">
-              <Text className="home-avatar-text font-bold">AS</Text>
+              <Text className="home-avatar-text font-bold">{displayInitials}</Text>
             </View>
             <View>
               <Text className="home-greeting-sub">Good morning !</Text>
-              <Text className="home-greeting font-extrabold ">Aryan's Store</Text>
+              <Text className="home-greeting font-extrabold ">{displayStoreName}</Text>
             </View>
           </View>
           <View className="flex-row gap-2">
@@ -60,7 +65,10 @@ export default function HomeScreen() {
             </TouchableOpacity>
             <TouchableOpacity 
               className="size-10 items-center justify-center rounded-full border border-border bg-card"
-              onPress={() => router.replace('/')}
+              onPress={() => {
+                logout();
+                router.push('/');
+              }}
             >
               <Ionicons name="log-out-outline" size={20} color="#0EA5E9" />
             </TouchableOpacity>

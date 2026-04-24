@@ -1,37 +1,47 @@
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
-export default function CustomerRewards() {
-  const offers = [
-    { id: 1, title: "Free Coffee", desc: "Redeem for 500 points", points: 500, icon: "cafe" },
-    { id: 2, title: "20% Off Next Visit", desc: "Redeem for 1000 points", points: 1000, icon: "pricetag" },
-    { id: 3, title: "Buy 1 Get 1 Free", desc: "Special birthday offer", points: 0, icon: "gift" },
+export default function RewardsScreen() {
+  const router = useRouter();
+
+  const rewards = [
+    { id: 1, title: 'Free Coffee', points: 500, icon: 'cafe' },
+    { id: 2, title: '10% Off Next Purchase', points: 800, icon: 'pricetag' },
+    { id: 3, title: 'Free Pastry', points: 1200, icon: 'pizza' },
   ];
 
   return (
     <SafeAreaView className="flex-1 bg-background">
-      <View className="px-5 pt-4 pb-2">
-        <Text className="text-3xl font-sans-bold text-foreground">Rewards</Text>
-        <Text className="text-sm font-sans-medium text-muted-foreground mt-1">
-          Redeem your points for exclusive offers
-        </Text>
+      <View className="px-5 pt-4 pb-4 flex-row items-center border-b border-border bg-card">
+        <TouchableOpacity onPress={() => router.back()} className="p-2 -ml-2 rounded-full">
+          <Ionicons name="arrow-back" size={24} color="#0F172A" />
+        </TouchableOpacity>
+        <Text className="text-xl font-sans-bold ml-2">Redeem Rewards</Text>
       </View>
       
-      <ScrollView className="flex-1 px-5 pt-4">
-        {offers.map(offer => (
-          <View key={offer.id} className="rounded-2xl border border-border bg-card p-4 mb-4 flex-row items-center shadow-sm">
-            <View className="bg-primary-light p-4 rounded-xl mr-4">
-              <Ionicons name={offer.icon as any} size={28} color="#0EA5E9" />
+      <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 60 }}>
+        <Text className="text-sm font-sans-medium text-muted-foreground mb-6">
+          You have 1250 points available to redeem.
+        </Text>
+
+        {rewards.map((reward) => (
+          <View key={reward.id} className="rounded-2xl border border-border bg-card p-4 mb-4 flex-row items-center justify-between shadow-sm">
+            <View className="flex-row items-center gap-4">
+              <View className="bg-primary-light p-3 rounded-full">
+                <Ionicons name={reward.icon as any} size={24} color="#0EA5E9" />
+              </View>
+              <View>
+                <Text className="text-base font-sans-bold text-foreground">{reward.title}</Text>
+                <Text className="text-sm font-sans-medium text-primary mt-1">{reward.points} pts</Text>
+              </View>
             </View>
-            <View className="flex-1">
-              <Text className="text-lg font-sans-bold text-foreground">{offer.title}</Text>
-              <Text className="text-sm font-sans-medium text-muted-foreground mt-1">{offer.desc}</Text>
-            </View>
-            <TouchableOpacity className="bg-primary px-4 py-2 rounded-xl" activeOpacity={0.8}>
-              <Text className="text-white font-sans-bold text-sm">
-                {offer.points > 0 ? `${offer.points} pts` : 'Claim'}
-              </Text>
+            <TouchableOpacity 
+              className="bg-primary px-4 py-2 rounded-full"
+              onPress={() => alert(`Redeemed ${reward.title} for ${reward.points} points!`)}
+            >
+              <Text className="text-white font-sans-bold text-sm">Redeem</Text>
             </TouchableOpacity>
           </View>
         ))}

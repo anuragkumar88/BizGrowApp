@@ -6,25 +6,23 @@ import { useAuth } from '../../../context/AuthContext';
 import { Input, Button } from '@/components/ui';
 import { LinearGradient } from 'expo-linear-gradient';
 
-export default function MerchantLogin() {
+export default function MerchantSignup() {
   const router = useRouter();
-  const { login, findUser } = useAuth();
+  const { login, register } = useAuth();
   
+  const [name, setName] = useState('');
+  const [storeName, setStoreName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    if (!email || !password) {
-      alert('Please enter email and password');
+  const handleSignup = () => {
+    if (!name || !storeName || !email || !password) {
+      alert('Please fill all fields');
       return;
     }
-    const found = findUser(email, password, 'merchant');
-    if (found) {
-      login({ role: 'merchant', name: found.name, storeName: found.storeName, email: found.email });
-      router.replace('/(tabs)');
-    } else {
-      alert('Invalid credentials. Please sign up first.');
-    }
+    register({ role: 'merchant', name, storeName, email, password });
+    login({ role: 'merchant', name, storeName, email });
+    router.replace('/(tabs)');
   };
 
   return (
@@ -44,12 +42,12 @@ export default function MerchantLogin() {
         </TouchableOpacity>
         <View className="flex-row items-center gap-3 mb-3">
           <View className="w-12 h-12 rounded-2xl bg-white/20 items-center justify-center">
-            <Ionicons name="storefront" size={24} color="#fff" />
+            <Ionicons name="rocket" size={24} color="#fff" />
           </View>
-          <Text className="text-3xl font-sans-extrabold text-white">Welcome Back</Text>
+          <Text className="text-3xl font-sans-extrabold text-white">Create Store</Text>
         </View>
         <Text className="text-base font-sans-medium text-white/80">
-          Sign in to manage your loyalty program & grow your business.
+          Set up your business on BizGrow and start rewarding customers.
         </Text>
       </LinearGradient>
 
@@ -61,6 +59,30 @@ export default function MerchantLogin() {
             keyboardShouldPersistTaps="handled"
           >
             <View className="gap-5 mb-6">
+              <View>
+                <Text className="text-xs font-sans-semibold text-muted-foreground uppercase tracking-widest mb-2">Your Name</Text>
+                <View className="flex-row items-center rounded-2xl border border-border bg-card px-4">
+                  <Ionicons name="person-outline" size={18} color="#64748B" />
+                  <Input 
+                    placeholder="Full Name" 
+                    value={name} 
+                    onChangeText={setName}
+                    style={{ flex: 1, borderWidth: 0, marginLeft: 8 }}
+                  />
+                </View>
+              </View>
+              <View>
+                <Text className="text-xs font-sans-semibold text-muted-foreground uppercase tracking-widest mb-2">Store Name</Text>
+                <View className="flex-row items-center rounded-2xl border border-border bg-card px-4">
+                  <Ionicons name="storefront-outline" size={18} color="#64748B" />
+                  <Input 
+                    placeholder="Your Store Name" 
+                    value={storeName} 
+                    onChangeText={setStoreName}
+                    style={{ flex: 1, borderWidth: 0, marginLeft: 8 }}
+                  />
+                </View>
+              </View>
               <View>
                 <Text className="text-xs font-sans-semibold text-muted-foreground uppercase tracking-widest mb-2">Email</Text>
                 <View className="flex-row items-center rounded-2xl border border-border bg-card px-4">
@@ -80,7 +102,7 @@ export default function MerchantLogin() {
                 <View className="flex-row items-center rounded-2xl border border-border bg-card px-4">
                   <Ionicons name="lock-closed-outline" size={18} color="#64748B" />
                   <Input 
-                    placeholder="••••••••" 
+                    placeholder="Min 8 characters" 
                     value={password} 
                     onChangeText={setPassword} 
                     secureTextEntry
@@ -90,35 +112,25 @@ export default function MerchantLogin() {
               </View>
             </View>
 
-            <TouchableOpacity className="self-end mb-6">
-              <Text className="text-sm font-sans-semibold text-primary">Forgot Password?</Text>
-            </TouchableOpacity>
+            {/* Terms */}
+            <Text className="text-xs font-sans-medium text-muted-foreground text-center mb-6 leading-5">
+              By creating an account, you agree to our{' '}
+              <Text className="text-primary font-sans-bold">Terms of Service</Text> and{' '}
+              <Text className="text-primary font-sans-bold">Privacy Policy</Text>.
+            </Text>
 
             <TouchableOpacity 
-              onPress={handleLogin}
+              onPress={handleSignup}
               className="items-center rounded-2xl bg-primary py-4 w-full"
               activeOpacity={0.7}
             >
-              <Text className="text-base font-sans-bold text-white">Sign In</Text>
+              <Text className="text-base font-sans-bold text-white">Create Account</Text>
             </TouchableOpacity>
 
-            {/* Divider */}
-            <View className="flex-row items-center my-6">
-              <View className="flex-1 h-px bg-border" />
-              <Text className="mx-4 text-xs font-sans-semibold text-muted-foreground uppercase tracking-widest">or</Text>
-              <View className="flex-1 h-px bg-border" />
-            </View>
-
-            {/* Social Login Mock */}
-            <TouchableOpacity className="flex-row items-center justify-center gap-3 rounded-2xl border border-border bg-card py-4 mb-4">
-              <Ionicons name="logo-google" size={20} color="#DB4437" />
-              <Text className="text-sm font-sans-bold text-foreground">Continue with Google</Text>
-            </TouchableOpacity>
-
-            <View className="flex-row justify-center mt-4 mb-8">
-              <Text className="text-sm font-sans-medium text-muted-foreground">New to BizGrow? </Text>
-              <TouchableOpacity onPress={() => router.replace('/(auth)/merchant/signup')}>
-                <Text className="text-sm font-sans-bold text-primary">Create Store →</Text>
+            <View className="flex-row justify-center mt-6 mb-8">
+              <Text className="text-sm font-sans-medium text-muted-foreground">Already have a store? </Text>
+              <TouchableOpacity onPress={() => router.replace('/(auth)/merchant/login')}>
+                <Text className="text-sm font-sans-bold text-primary">Sign In →</Text>
               </TouchableOpacity>
             </View>
           </ScrollView>

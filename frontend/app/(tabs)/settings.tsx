@@ -5,6 +5,7 @@ import { Alert, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Avatar, Button, Input } from '@/components/ui';
+import { useAuth } from '../../context/AuthContext';
 
 type StoreData = {
   name: string;
@@ -14,14 +15,18 @@ type StoreData = {
 };
 
 const MOCK_STORE: StoreData = {
-  name: "Aryan's Kirana Store",
-  email: 'sinhaaryan622@gmail.com',
+  name: 'My Store',
+  email: 'store@bizgrow.app',
   pointsRate: 10,
   redemptionDays: 30,
 };
 
 export default function SettingsScreen() {
-  const [storeName, setStoreName] = useState(MOCK_STORE.name);
+  const router = useRouter();
+  const { user, logout } = useAuth();
+  
+  const [storeName, setStoreName] = useState(user?.storeName || MOCK_STORE.name);
+  const [email, setEmail] = useState(user?.email || MOCK_STORE.email);
   const [isEditingName, setIsEditingName] = useState(false);
 
   const [pointsRate, setPointsRate] = useState(String(MOCK_STORE.pointsRate));
@@ -30,9 +35,8 @@ export default function SettingsScreen() {
   const [redemptionDays, setRedemptionDays] = useState(String(MOCK_STORE.redemptionDays));
   const [isEditingRedemption, setIsEditingRedemption] = useState(false);
 
-  const router = useRouter();
-
   const handleLogout = () => {
+    logout();
     router.push('/');
   };
 
@@ -49,12 +53,12 @@ export default function SettingsScreen() {
 
         {/* Store Info Card */}
         <View className="rounded-2xl border border-border bg-card p-5 mb-6 items-center">
-          <Avatar name={MOCK_STORE.name} size="xl" backgroundColor="#232A45" textColor="#FCFCFC" />
+          <Avatar name={storeName} size="xl" backgroundColor="#232A45" textColor="#FCFCFC" />
           <Text className="text-lg font-extrabold font-sans-bold text-foreground mt-3">
             {storeName}
           </Text>
           <Text className="text-sm font-sans-medium text-muted-foreground mt-1">
-            {MOCK_STORE.email}
+            {email}
           </Text>
         </View>
 
@@ -167,7 +171,7 @@ export default function SettingsScreen() {
         <View className="rounded-2xl border border-border bg-card mb-6 overflow-hidden">
           <View className="px-5 py-4 flex-row items-center justify-between">
             <Text className="text-sm font-sans-semibold text-foreground">Email</Text>
-            <Text className="text-sm font-sans-medium text-muted-foreground">{MOCK_STORE.email}</Text>
+            <Text className="text-sm font-sans-medium text-muted-foreground">{email}</Text>
           </View>
           <View className="h-px bg-border mx-5" />
           <View className="px-5 py-4 flex-row items-center justify-between">

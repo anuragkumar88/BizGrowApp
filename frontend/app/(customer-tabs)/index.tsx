@@ -3,13 +3,16 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Avatar } from '@/components/ui';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import { useAuth } from '../../context/AuthContext';
 
 export default function CustomerDashboard() {
   const router = useRouter();
 
-  // Mock data for hackathon demo
-  const customerName = "John Doe";
-  const storeName = "Starbucks Coffee";
+  const { user, logout } = useAuth();
+
+  // Mock data for hackathon demo mixed with dynamic context
+  const customerName = user?.name || "John Doe";
+  const storeName = user?.storeName || "Starbucks Coffee";
   const points = 1250;
   
   const recentTransactions = [
@@ -20,7 +23,10 @@ export default function CustomerDashboard() {
 
   return (
     <SafeAreaView className="flex-1 bg-background">
-      <ScrollView className="flex-1 px-5 pt-4">
+      <ScrollView 
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ padding: 20, paddingBottom: 40 }}
+      >
         
         {/* Header */}
         <View className="home-header mb-6">
@@ -31,7 +37,13 @@ export default function CustomerDashboard() {
               <Text className="home-greeting ml-0 mt-0.5">{customerName}</Text>
             </View>
           </View>
-          <TouchableOpacity onPress={() => router.replace('/')} className="rounded-full bg-muted p-2">
+          <TouchableOpacity 
+            onPress={() => {
+              logout();
+              router.push('/');
+            }} 
+            className="rounded-full bg-muted p-2"
+          >
             <Ionicons name="log-out-outline" size={20} color="#0F172A" />
           </TouchableOpacity>
         </View>
@@ -62,7 +74,11 @@ export default function CustomerDashboard() {
             </View>
             <Text className="text-sm font-sans-bold text-foreground">Redeem</Text>
           </TouchableOpacity>
-          <TouchableOpacity className="flex-1 items-center rounded-2xl border border-border bg-card py-4 gap-2 shadow-sm" activeOpacity={0.7}>
+          <TouchableOpacity 
+            className="flex-1 items-center rounded-2xl border border-border bg-card py-4 gap-2 shadow-sm" 
+            activeOpacity={0.7}
+            onPress={() => alert('Scanner opening...')}
+          >
             <View className="bg-secondary-light p-3 rounded-full">
                <Ionicons name="qr-code-outline" size={24} color="#0284C7" />
             </View>
