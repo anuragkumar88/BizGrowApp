@@ -1,0 +1,495 @@
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css";
+
+@import "nativewind/theme";
+
+@theme {
+    /* ── Core ── */
+    /* ── Core (Refined Neutrals) ── */
+    --color-background: #FCFCFC;
+    /* Clean, modern off-white */
+    --color-foreground: #0F172A;
+    /* Deep Slate (better readability than pure navy) */
+    --color-card: #FFFFFF;
+    --color-muted: #F1F5F9;
+    /* Soft Slate gray for backgrounds */
+    --color-muted-foreground: #64748B;
+    /* Muted Slate for subtexts */
+    --color-border: #E2E8F0;
+    /* Subtle, clean border */
+
+    /* ── Brand (Premium Emerald & Indigo) ── */
+    --color-primary: #232A45;
+    /* Sophisticated Emerald */
+    --color-primary-light: #FCFCFC;
+    --color-secondary: #002147;
+    /* Modern Indigo */
+    --color-secondary-light: #EEF2FF;
+
+    /* ── Semantic ── */
+    --color-success: #10B981;
+    --color-destructive: #EF4444;
+    /* Brighter, more standard red */
+    --color-destructive-light: #FEF2F2;
+    --color-warning: #F59E0B;
+    --color-warning-light: #FFFBEB;
+
+    /* ── Text ── */
+    --color-text-primary: #0F172A;
+    /* Matches foreground */
+    --color-text-secondary: #475569;
+    /* Slate 600 for high-contrast subtext */
+
+    /* ── Spacing ── */
+    --spacing-0: 0px;
+    --spacing-1: 4px;
+    --spacing-2: 8px;
+    --spacing-3: 12px;
+    --spacing-4: 16px;
+    --spacing-5: 20px;
+    --spacing-6: 24px;
+    --spacing-7: 28px;
+    --spacing-8: 32px;
+    --spacing-9: 36px;
+    --spacing-10: 40px;
+    --spacing-11: 44px;
+    --spacing-12: 48px;
+    --spacing-14: 56px;
+    --spacing-16: 64px;
+    --spacing-20: 80px;
+    --spacing-24: 96px;
+
+    /* ── Typography (Updated for Plus Jakarta Sans) ── */
+    --font-sans: 'PlusJakartaSans-Regular';
+    --font-sans-light: 'PlusJakartaSans-Light';
+    --font-sans-medium: 'PlusJakartaSans-Medium';
+    --font-sans-semibold: 'PlusJakartaSans-SemiBold';
+    --font-sans-bold: 'PlusJakartaSans-Bold';
+    --font-sans-extrabold: 'PlusJakartaSans-ExtraBold';
+}
+
+@layer components {
+
+    /* ─────────────────────────────────────────
+       TABS
+    ───────────────────────────────────────── */
+    .tabs-icon {
+        @apply size-12 items-center justify-center;
+    }
+
+    .tabs-pill {
+        @apply size-12 items-center justify-center rounded-full bg-transparent;
+    }
+
+    .tabs-active {
+        @apply bg-primary;
+    }
+
+    .tabs-glyph {
+        @apply size-6;
+    }
+
+    /* ─────────────────────────────────────────
+       AUTH
+    ───────────────────────────────────────── */
+    .auth-safe-area {
+        @apply flex-1 bg-background;
+    }
+
+    .auth-screen {
+        @apply flex-1 bg-background;
+    }
+
+    .auth-scroll {
+        @apply flex-1;
+    }
+
+    .auth-content {
+        @apply grow px-5 pb-10 pt-8;
+    }
+
+    .auth-brand-block {
+        @apply mt-2 items-center;
+    }
+
+    .auth-logo-wrap {
+        @apply mb-7 flex-row items-center gap-3;
+    }
+
+    .auth-logo-mark {
+        @apply relative size-14 items-center justify-center rounded-2xl bg-primary;
+    }
+
+    .auth-logo-mark-text {
+        @apply text-2xl font-sans-extrabold text-white;
+    }
+
+    .auth-wordmark {
+        @apply text-3xl font-sans-extrabold text-foreground;
+    }
+
+    .auth-wordmark-sub {
+        @apply -mt-1 text-xs font-sans-semibold uppercase tracking-[1px] text-muted-foreground;
+    }
+
+    .auth-title {
+        @apply text-3xl font-sans-bold text-foreground;
+    }
+
+    .auth-subtitle {
+        @apply mt-2 max-w-[320px] text-center text-base font-sans-medium text-muted-foreground;
+    }
+
+    .auth-card {
+        @apply mt-8 rounded-3xl border border-border bg-card p-5;
+    }
+
+    .auth-form {
+        @apply gap-4;
+    }
+
+    .auth-field {
+        @apply gap-2;
+    }
+
+    .auth-label {
+        @apply text-sm font-sans-semibold text-foreground;
+    }
+
+    .auth-input {
+        @apply rounded-2xl border border-border bg-background px-4 py-4 text-base font-sans-medium text-foreground;
+    }
+
+    .auth-input-error {
+        @apply border-destructive;
+    }
+
+    .auth-error {
+        @apply text-xs font-sans-medium text-destructive;
+    }
+
+    .auth-button {
+        @apply mt-1 items-center rounded-2xl bg-primary py-4;
+    }
+
+    .auth-button-disabled {
+        @apply bg-primary/40;
+    }
+
+    .auth-button-text {
+        @apply text-base font-sans-bold text-white;
+    }
+
+    .auth-secondary-button {
+        @apply items-center rounded-2xl border border-secondary/30 bg-secondary/10 py-3;
+    }
+
+    .auth-secondary-button-text {
+        @apply text-sm font-sans-semibold text-secondary;
+    }
+
+    .auth-divider-row {
+        @apply my-4 flex-row items-center gap-3;
+    }
+
+    .auth-divider-line {
+        @apply h-px flex-1 bg-border;
+    }
+
+    .auth-divider-text {
+        @apply text-[11px] font-sans-semibold uppercase tracking-[1px] text-muted-foreground;
+    }
+
+    .auth-link-row {
+        @apply mt-5 flex-row items-center justify-center gap-1;
+    }
+
+    .auth-link-copy {
+        @apply text-sm font-sans-medium text-muted-foreground;
+    }
+
+    .auth-link {
+        @apply text-sm font-sans-bold text-secondary;
+    }
+
+    /* ─────────────────────────────────────────
+       HOME / DASHBOARD
+    ───────────────────────────────────────── */
+    .home-header {
+        @apply mb-2.5 flex-row items-center justify-between;
+    }
+
+    .home-avatar {
+        @apply size-16 rounded-full bg-primary items-center justify-center;
+    }
+
+    .home-avatar-text {
+        @apply text-xl font-sans-bold text-primary-light;
+    }
+
+    .home-greeting {
+        @apply ml-4 text-xl font-sans-bold text-foreground;
+    }
+
+    .home-greeting-sub {
+        @apply ml-4 text-xs font-sans-medium text-muted-foreground;
+    }
+
+    .home-stats-card {
+        @apply flex-1 rounded-2xl bg-[#f3b058] border border-border p-4 items-center;
+    }
+
+    .home-stats-value {
+        @apply text-2xl font-sans-extrabold text-[#39393f];
+    }
+
+    .home-stats-label {
+        @apply text-xs font-sans-semibold text-muted-foreground mt-1;
+    }
+
+    .home-revenue-card {
+        @apply my-3 rounded-3xl bg-primary p-6 justify-between min-h-36;
+    }
+
+    .home-revenue-label {
+        @apply text-base font-sans-semibold text-white/80;
+    }
+
+    .home-revenue-amount {
+        @apply text-4xl font-sans-extrabold text-white;
+    }
+
+    .home-quick-action {
+        @apply flex-1 items-center rounded-2xl border border-border bg-[#2C3552] py-4 gap-2;
+    }
+
+    .home-quick-action-text {
+        @apply text-xs font-sans-semibold text-white;
+    }
+
+    /* ─────────────────────────────────────────
+       SHARED LIST / SECTION
+    ───────────────────────────────────────── */
+    .list-head {
+        @apply my-5 flex-row items-center justify-between;
+    }
+
+    .list-title {
+        @apply text-2xl font-extrabold font-sans-bold text-foreground/80;
+    }
+
+    .list-action {
+        @apply rounded-full border-2 border-[#333] px-4 py-1;
+    }
+
+    .list-action-text {
+        @apply text-sm font-sans-semibold text-secondary;
+    }
+
+    /* ─────────────────────────────────────────
+       CUSTOMER CARDS
+    ───────────────────────────────────────── */
+    .customer-card {
+        @apply rounded-2xl border border-border bg-card p-4 mb-3;
+    }
+
+    .customer-card-row {
+        @apply flex-row items-center justify-between;
+    }
+
+    .customer-avatar {
+        @apply size-12 rounded-full bg-primary items-center justify-center;
+    }
+
+    .customer-avatar-text {
+        @apply text-base font-extrabold font-sans-bold text-primary-light;
+    }
+
+    .customer-name {
+        @apply text-base font-bold font-sans-bold text-foreground;
+    }
+
+    .customer-phone {
+        @apply text-sm font-sans-medium text-muted-foreground;
+    }
+
+    .customer-points-badge {
+        @apply rounded-full bg-primary-light px-3 py-1;
+    }
+
+    .customer-points-text {
+        @apply text-xs font-sans-bold font-bold text-primary;
+    }
+
+    /* ─────────────────────────────────────────
+       TAG / CHIP
+    ───────────────────────────────────────── */
+    .tag-chip {
+        @apply rounded-full border border-border bg-muted px-3 py-1;
+    }
+
+    .tag-chip-active {
+        @apply border-primary bg-primary-light;
+    }
+
+    .tag-chip-text {
+        @apply text-xs font-sans-semibold text-muted-foreground;
+    }
+
+    .tag-chip-text-active {
+        @apply text-primary;
+    }
+
+    .tag-chip-danger {
+        @apply border-destructive bg-destructive-light;
+    }
+
+    .tag-chip-text-danger {
+        @apply text-destructive;
+    }
+
+    .tag-chip-info {
+        @apply border-secondary bg-secondary-light;
+    }
+
+    .tag-chip-text-info {
+        @apply text-secondary;
+    }
+
+    .tag-chip-warning {
+        @apply border-warning bg-warning-light;
+    }
+
+    .tag-chip-text-warning {
+        @apply text-warning;
+    }
+
+    /* ─────────────────────────────────────────
+       CAMPAIGNS
+    ───────────────────────────────────────── */
+    .ai-card {
+        @apply rounded-3xl bg-secondary p-5 mb-4;
+    }
+
+    .ai-card-title {
+        @apply text-lg font-sans-bold text-white mb-1;
+    }
+
+    .ai-card-sub {
+        @apply text-sm font-sans-medium text-white/70 mb-4;
+    }
+
+    .ai-input {
+        @apply rounded-2xl bg-white/15 px-4 py-3 text-base font-sans-medium text-white;
+    }
+
+    .ai-button {
+        @apply mt-3 items-center rounded-2xl bg-white py-3;
+    }
+
+    .ai-button-text {
+        @apply text-sm font-sans-bold text-secondary;
+    }
+
+    .campaign-preview-card {
+        @apply rounded-2xl border border-primary/30 bg-primary-light p-4 mb-4;
+    }
+
+    .campaign-preview-text {
+        @apply text-base font-sans-medium text-foreground;
+    }
+
+    .whatsapp-button {
+        @apply items-center rounded-2xl bg-primary py-4 flex-row justify-center gap-2;
+    }
+
+    .whatsapp-button-text {
+        @apply text-base font-sans-bold text-white;
+    }
+
+    .past-campaign-card {
+        @apply rounded-2xl border border-border bg-card p-4 mb-3;
+    }
+
+    .past-campaign-snippet {
+        @apply text-sm font-sans-medium text-foreground mb-1;
+    }
+
+    .past-campaign-meta {
+        @apply text-xs font-sans-medium text-muted-foreground;
+    }
+
+    /* ─────────────────────────────────────────
+    TRANSACTION
+    ───────────────────────────────────────── */
+    .transaction-card {
+        @apply rounded-2xl border border-border bg-[#f3b058] p-4 mb-3 flex-row items-center justify-between;
+    }
+
+    .transaction-amount {
+        @apply text-lg font-bold font-sans-bold text-foreground/90;
+    }
+
+    .transaction-meta {
+        @apply text-xs font-bold font-sans-medium text-muted-foreground;
+    }
+
+    .points-earned-badge {
+        @apply rounded-full bg-[#fdd197] px-3 py-1;
+    }
+
+    .points-earned-text {
+        @apply text-xs font-bold font-sans-bold text-[#222222];
+    }
+
+    /* ─────────────────────────────────────────
+    MODAL
+    ───────────────────────────────────────── */
+    .modal-overlay {
+        @apply flex-1 bg-black/50;
+    }
+
+    .modal-container {
+        @apply mt-auto max-h-[85%] rounded-t-3xl bg-background;
+    }
+
+    .modal-header {
+        @apply flex-row items-center justify-between border-b border-border px-5 py-4;
+    }
+
+    .modal-title {
+        @apply text-xl font-sans-bold text-foreground;
+    }
+
+    .modal-close {
+        @apply size-8 items-center justify-center rounded-full bg-muted;
+    }
+
+    .modal-close-text {
+        @apply text-lg font-sans-bold text-foreground;
+    }
+
+    .modal-body {
+        @apply gap-5 p-5;
+    }
+
+    /* ─────────────────────────────────────────
+       DANGER / DESTRUCTIVE BUTTON
+    ───────────────────────────────────────── */
+    .danger-button {
+        @apply items-center rounded-2xl bg-destructive py-4;
+    }
+
+    .danger-button-text {
+        @apply text-base font-sans-bold text-white;
+    }
+
+    .danger-button-outline {
+        @apply items-center rounded-2xl border border-destructive py-4;
+    }
+
+    .danger-button-outline-text {
+        @apply text-base font-sans-bold text-destructive;
+    }
+}
